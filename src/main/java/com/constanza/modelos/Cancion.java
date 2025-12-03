@@ -5,6 +5,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
+
 
 @Entity
 @Table(name ="canciones")
@@ -14,10 +16,20 @@ public class Cancion{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    //Validaciones de longuitud
+    @Size(min = 5, message = "Título debe tener al menos 5 caracteres")
     private String titulo;
+
+    @Size(min = 3, message = "Artista debe tener al menos 3 caracteres")
     private String artista;
+
+    @Size(min = 3, message = "Álbum debe tener al menos 3 caracteres")
     private String album;
+
+    @Size(min = 3, message = "Género debe tener al menos 3 caracteres")
     private String genero;
+
+    @Size(min = 3, message = "Idioma debe tener al menos 3 caracteres")
     private String idioma;
 
     @CreationTimestamp
