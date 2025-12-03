@@ -13,6 +13,18 @@
 	<p>Album: ${cancion.album}</p>
 	<p>Genero: ${cancion.genero}</p>
 	<p>Idioma: ${cancion.idioma}</p>
+
+	<br>
+	<!--Boton para editar canción-->
+	<form action="/canciones/formulario/editar/${cancion.id}" method="GET">
+    	<button type="submit">Editar canción</button>
+	</form>
+
+	<br>
 	<a href="/canciones">Volver a la lista de canciones</a>
+
+	
+
+
 </body>
 </html>

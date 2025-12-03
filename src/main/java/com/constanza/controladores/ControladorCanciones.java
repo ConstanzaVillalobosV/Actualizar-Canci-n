@@ -42,21 +42,50 @@ public class ControladorCanciones {
         return "agregarCancion";
     }
 
-    //Método que grega la canción a la base de datos y redirige a la ruta de “/canciones”
+    //Método que agrega la canción a la base de datos y redirige a la ruta de “/canciones”
     @PostMapping("/canciones/procesa/agregar")
     public String procesarAgregarCancion(
         @Valid @ModelAttribute("cancion") Cancion cancion,
         BindingResult resultado) {
 
-    // Si hay errores en la validación, vuelve al formulario
-    if (resultado.hasErrors()) {
-        return "agregarCancion";
-    }
-    // Si no hay errores, guardar la canción
-    servicio.agregarCancion(cancion);
+        // Si hay errores en la validación, vuelve al formulario
+        if (resultado.hasErrors()) {
+            return "agregarCancion";
+        }
+        // Si no hay errores, guardar la canción
+        servicio.agregarCancion(cancion);
 
-    // Redirige al listado de canciones
-    return "redirect:/canciones";
+        // Redirige al listado de canciones
+        return "redirect:/canciones";
     }
-    
+
+    //Método para editar canción por id
+    @GetMapping("/canciones/formulario/editar/{idCancion}")
+    public String formularioEditarCancion(@PathVariable("idCancion") Long id, Model model) {
+        model.addAttribute("cancion", servicio.obtenerCancionPorId(id));
+        return "editarCancion";
+    }
+
+    //Método que edita la canción dado el id recibido como parámetro
+    @PostMapping("/canciones/procesa/editar/{idCancion}")
+    public String procesarEditarCancion(
+        @PathVariable("idCancion") Long idCancion,
+        @Valid @ModelAttribute("cancion") Cancion cancion,
+        BindingResult resultado) {
+        
+        //
+        cancion.setId(idCancion);
+
+        // Si hay errores, vuelve al formulario
+        if (resultado.hasErrors()) {
+            return "editarCancion";
+        }
+
+        // Se actualliza la canción si no hay problemas
+        servicio.actualizaCancion(cancion);
+
+        return "redirect:/canciones";
+    }
+
+
 }

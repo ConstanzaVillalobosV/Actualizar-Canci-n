@@ -30,8 +30,10 @@
 		</tbody>
 	</table>
 	<!--Boton para agregar canción-->
-	<a href="/canciones/formulario/agregar">
-		<button>Agregar canción</button>
-	</a>
+	<form action="/canciones/formulario/agregar" method="GET">
+    	<button type="submit">Agregar canción</button>
+	</form>
+
+
 </body>
 </html>
