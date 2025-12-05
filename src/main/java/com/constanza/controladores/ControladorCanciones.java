@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 import com.constanza.modelos.Cancion;
 import com.constanza.servicios.ServicioCanciones;
@@ -67,7 +69,7 @@ public class ControladorCanciones {
     }
 
     //Método que edita la canción dado el id recibido como parámetro
-    @PostMapping("/canciones/procesa/editar/{idCancion}")
+    @PutMapping("/canciones/procesa/editar/{idCancion}")
     public String procesarEditarCancion(
         @PathVariable("idCancion") Long idCancion,
         @Valid @ModelAttribute("cancion") Cancion cancion,

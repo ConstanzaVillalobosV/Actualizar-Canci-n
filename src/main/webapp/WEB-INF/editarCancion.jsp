@@ -14,7 +14,8 @@
 <h1>Editar Canción</h1>
 
 <form:form method="POST" action="/canciones/procesa/editar/${cancion.id}" modelAttribute="cancion">
-
+    <input type="hidden" name="_method" value="put"/>
+    
     <form:label path="titulo">Título:</form:label>
     <form:input path="titulo"/>
     <form:errors path="titulo" cssClass="error"/>
